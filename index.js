@@ -61,3 +61,131 @@ module.exports.identity = identity;
     } 
 };
 module.exports.typeOf = typeOf;
+/**
+ * first: Function takes in an array and a number and returns: an array if array is not an array, if number is not given or not a number return the first element
+ * return first value in array,
+ * @param {An Array}: Function takes in an array.
+ * @param {A number}: Function takes in a number.
+ * 
+ * @return {An array} Function returns an empty array, first element in array, first value in array
+ */
+ function first(array, num){
+    var a = []; //store our values in empty array
+    //if array is not an array 
+    if (!Array.isArray(array)){
+        //return an empty array
+        return a;
+        //else if num is not given, or a number 
+    } else if (typeof num != 'number'){
+        //return first value in the array
+        return array[0];
+        //if num is greater than the array length
+    } else if (num > array.length){
+        //return array
+        return array;
+    } else {
+     for (var i = 0; i < num; i ++){
+        a.push(array[i]);
+     }
+    }
+    return a;
+}
+module.exports.first = first;
+/**
+ * first: Function takes in an array and a number and returns: an array if array is not an array, if number is not given or not a number return the first element
+ * return first value in array,
+ * @param {An Array}: Function takes in an array.
+ * @param {A number}: Function takes in a number.
+ * 
+ * @return {An array} Function returns an empty array, last element in array, last value in array
+ */
+function last(array, num){
+    //store our values in empty array
+    var b = [];
+    //if array is not an array
+    if (!Array.isArray(array)){
+        //return an empty array
+        return b;
+        //else if num is not given, or a nunber
+    } else if (typeof num != 'number'){
+        //return last element in array
+        return array[2];
+        //else if num is greater than array.length
+    } else if (num > array.length){
+    //return array
+    return array;
+    //checking if num is negative
+    } else if (num < 0){
+        return b;
+    } else { //iterating overarray pushing values into our new array
+    for (var i = num - 1; i < array.length; i ++){
+        b.push(array[i]);
+    }
+    }
+    return b;
+    }
+    module.exports.last = last;
+    /**
+     * indexof :Function is made to find index of array otherwise return -1 if not found
+     * @param {An Array}: Function takes in an array.
+     * @param {A Value}: Function takes in a value.
+     * 
+     * @return {Index or -1}: Functions returns the index of the first occurence of value if not found in array returns -1
+     */
+ function indexof(array, value){
+        //iterate through array 
+    for (let i = 0; i < array.length; i++){
+        //check if value in array is === to value 
+        if (array[i] === value){
+            //return the index
+            return i;
+        } 
+    }
+    //if value is not in array return -1
+    return -1;
+    }
+    module.exports.indexof = indexof;
+/**
+ * filter: Function is made to filter out values based on condtions
+ * @param {An Array}: Function takes in an array
+ * @param {Callback Func}: Function takes in a callback function
+ * 
+ * @return {Array}: Function returns new array with filtered values if true
+ */
+ function filter(array, func){
+    //create an empty array
+    let output = [];
+    //iterate over array
+    for (let i = 0; i < array.length; i ++){
+        //create callback func
+        if(func(array[i], i, array)){
+            //push filtered values into new array if true
+            output.push(array[i]);
+        }
+    }
+    //return new array
+    return output;
+}
+module.exports.filter = filter;
+/**
+ * filter: Function is made to filter out values based on condtions
+ * @param {An Array}: Function takes in an array
+ * @param {Callback Func}: Function takes in a callback function
+ * 
+ * @return {Array}: Function returns new array with filtered values if false
+ */
+ function reject(array, func){
+    //create empty array 
+    let output = [];
+    //iterate over the array
+    for (let i = 0; i < array.length; i++){
+        //create callback func
+        if(!func(array[i], i, array)){
+            //push filtered values into new array if false
+            output.push(array[i]);
+        }
+    }
+    //retrun new array
+    return output;
+}
+module.exports.reject = reject;
