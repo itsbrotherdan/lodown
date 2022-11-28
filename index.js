@@ -33,3 +33,31 @@ module.exports.each = each;
         return value;
     }
 module.exports.identity = identity; 
+/**
+ * typeOf: Function takes in any value returns value as a string
+ * 
+ * @param {Any Value}: Function takes in any value.
+ * @return {A String} Function returns a string of each typeOf value
+ */
+ function typeOf(value){ 
+    if (Array.isArray(value)){
+        return 'array'; //checking if array
+    }  else if(typeof value === 'string') {
+        return 'string'; //checking if string
+    } else if (value === null){
+      return 'null'; //checking if null
+    } else if (typeof value === 'number'){
+      return 'number'; //checking if number
+    } else if (value instanceof Date ){
+      return 'date'; //checking if date
+    } else if (typeof value === 'function'){
+      return 'function'; //checking if function
+    } else if (typeof value === 'boolean'){
+        return 'boolean'; //checking if boolean
+    } else if (typeof value === 'undefined'){
+        return 'undefined'; //checking if undefined
+    } else if (typeof value === 'object'){
+        return 'object'; //checking if object
+    } 
+};
+module.exports.typeOf = typeOf;
