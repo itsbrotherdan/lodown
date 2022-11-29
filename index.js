@@ -168,7 +168,7 @@ function last(array, num){
 }
 module.exports.filter = filter;
 /**
- * filter: Function is made to filter out values based on condtions
+ * reject: Function is made to filter out values based on condtions
  * @param {An Array}: Function takes in an array
  * @param {Callback Func}: Function takes in a callback function
  * 
@@ -189,3 +189,45 @@ module.exports.filter = filter;
     return output;
 }
 module.exports.reject = reject;
+/**
+ * contains: Function checks if array contains value and returns true otherwise return false
+ * @param {An Array}: Function takes in an array
+ * @param {A Value}: Function takes in any value
+ * 
+ * @return {True or False}: Function return true if value is found in array and false otherwise
+ */
+function contains(array, value){
+    for (var i = 0; i < array.length; i ++){
+       if (array[i] === value){
+           return true;
+       }
+    }
+    return false;
+   }
+module.exports.contains = contains;
+/**
+ * map: Function checks if collection is an array or orbject and saves new values of each function call in an array 
+ * @param {Collection}: Function takes in a collection (array or object)
+ * @param {Func}: Function takes in a func param to create a callback func
+ * 
+ * @return {Array}: Function returns the new values in a new array
+ */
+function map(collection, func){
+    //create empty array for holding
+    var arr = [];
+    //if collection is an array - loop then - push call back func
+    if (Array.isArray(collection)){
+        //loop over possible array
+        for (let i = 0; i < collection.length; i ++){
+            arr.push(func(collection[i], i, collection));
+        } 
+    } else { //else if collection is an array - loop then - push call back func
+        //loop over possible object
+        for (let key in collection){
+            arr.push(func(collection[key], key, collection));
+        }
+    }
+    //return new array
+    return arr;
+}
+module.exports.map = map;
