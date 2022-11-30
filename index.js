@@ -231,3 +231,108 @@ function map(collection, func){
     return arr;
 }
 module.exports.map = map;
+/**
+ * unique: Function removes duplicates from an array and returns new array
+ * @param {Array}: Function takes in an array;
+ * 
+ * @return {Array}: Function return a new array with duplicates removed
+ */
+ function unique(array){
+    //creating empty array
+var newArr = [];
+//looping over array
+for (var i = 0; i < array.length; i++){
+    if (_.indexOf(newArr, array[i]) === -1){
+        //pushing new values into empty array
+        newArr.push(array[i]);
+    }
+} 
+//return new array
+return newArr;
+}
+module.exports.unique = unique;
+/**
+ * reduce: Function reduces on each element of the array
+ * @param {Array}: Function takes in an array
+ * @param {Func}: Function takes in a callback function
+ * @param {Seed}: Function takes in a seed value
+ * 
+ * @return {Array}: Function returns a new array of the result 
+ */
+function reduce(array, func, seed){
+    //create result variable
+    let result;
+    //determine if seed value was not given a value
+    if (seed === undefined){
+      //assign result to first value of array  
+      result = array[0];
+      // iterate through input array
+      for (let i = 1; i < array.length; i++){
+        result = func(result, array[i], i, array)
+      }
+    
+    } else {
+        //assign result the value of seed
+        result = seed;
+        //iterate normally
+        for (let i = 0; i < array.length; i++) {
+            result = func(result, array[i], i, array)
+        }
+    }
+    return result;
+}
+module.exports.reduce = reduce;
+/**
+ * every: Function goes through every value and returns true or false depending on condition
+ * @param {Collection}: Function takes in a collection
+ * @param {Func}: Function takes in a call back function
+ * 
+ * @return {Boolean}: Function returns boolean if values in collection match the conditon
+ */
+ function every(collection, func){
+    if(func === undefined ){
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if collection[i] is truthy
+                if(!collection[i]){
+                    //return false;
+                    return false;
+                }
+            }
+        } else { //else
+            //iterate through object
+            for(let key in collection){
+                //determine if collection[key] is truthy
+                if(!collection[key]){
+                    //return false;
+                    return false;
+                }
+            }
+        }
+    } else{ //else
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if invoking func on the params is false
+                if(func(collection[i], i, collection) === false){
+                    //return false
+                    return false;
+                }
+            }
+        } else{ //else its an object
+            //iterate through object
+            for(let key in collection){
+                //determine if invoking func on the params is false
+                if(func(collection[key], key, collection) === false)
+                {   //return false;
+                    return false;
+                }
+            }
+        }
+    }//return true
+    return true;
+     }
+     module.exports.every = every;
