@@ -336,3 +336,114 @@ module.exports.reduce = reduce;
     return true;
      }
      module.exports.every = every;
+     /**
+ * every: Function goes through some values and returns true or false depending on condition
+ * @param {Collection}: Function takes in a collection
+ * @param {Func}: Function takes in a call back function
+ * 
+ * @return {Boolean}: Function returns boolean if values in collection match the conditon
+ */
+      function some(collection, func){
+        if(func === undefined ){
+            //determine if collection is an array
+            if(Array.isArray(collection)){
+                //iterate through collections array
+                for(let i = 0; i < collection.length; i++){
+                    //determine if collection[i] is falsy
+                    if(collection[i]){
+                        //return true;
+                        return true;
+                    }
+                }
+            } else { //else
+                //iterate through object
+                for(let key in collection){
+                    //determine if collection[key] is falsy
+                    if(collection[key]){
+                        //return true;
+                        return true;
+                    }
+                }
+            }
+        } else{ //else
+            //determine if collection is an array
+            if(Array.isArray(collection)){
+                //iterate through collections array
+                for(let i = 0; i < collection.length; i++){
+                    //determine if invoking func on the params is true
+                    if(func(collection[i], i, collection) === true){
+                        //return true
+                        return true;
+                    }
+                }
+            } else{ //else its an object
+                //iterate through object
+                for(let key in collection){
+                    //determine if invoking func on the params is true
+                    if(func(collection[key], key, collection) === true)
+                    {   //return true;
+                        return true;
+                    }
+                }
+            }
+        }//return false
+        return false;
+         }
+         module.exports.some = some;
+         /**
+          * extend: Function is designed to assign objects to another object
+          * @param {Object1}: Function takes in an object
+          * @param {Object2}: Function takes in an object
+          * @param {...Object}: Function takes in many more objects
+          * 
+          * @return {Object}: Function returns new object with values from other objects
+          */
+         function extend(object1, object2, ...object){
+            //assigning object2 & ...object to object 1
+        Object.assign(object1, object2, ...object);
+        //returning object
+        return object1;
+        }
+        module.exports.extend = extend;
+        /**
+         * pluck: Function plucks values out of array
+         * @param {Array}: Function takes in an array.
+         * @param {Property}: Function takes in a property
+         * 
+         * @return {Array}: Function returns an array with new values
+         */
+         function pluck(array, property){
+            //mapping over pluck
+        var plucked = _.map(array, function(item){
+            //returning value for property for every in array
+            return item[property]
+          })
+          //return new array
+          return plucked
+        }
+        module.exports.pluck = pluck;
+        /**
+         * partition: Function checks if values are truthy or falsy and sends them to a new array
+         * @param {Array}: Function takes in an array
+         * @param {Func}: Function takes in a call back function
+         * 
+         *@return: Function returns an array of arrays where the function deemed values truthy or falsy
+         */
+         function partition(array, func){
+            var truthy = []; //creating new array
+            var falsy = [];  //creating new array
+            var combined = [truthy, falsy]; //creating new array of combined arrays 
+            //looping over array
+             for (let i = 0; i < array.length; i ++){
+                 //if elements are truth push them into truthy array
+                 if (func(array[i], i, array)){
+                     truthy.push(array[i]);
+                 } else {
+                     //else push them into falsy array
+                     falsy.push(array[i]);
+                 }
+             } 
+             //return new combined array
+             return combined;
+         }
+         module.exports.partition = partition;
