@@ -67,7 +67,7 @@ module.exports.typeOf = typeOf;
  * @param {An Array}: Function takes in an array.
  * @param {A number}: Function takes in a number.
  * 
- * @return {An array} Function returns an empty array, first element in array, first value in array
+ * @return {An array}: Function returns an array containing the first number of items in the input array.
  */
  function first(array, num){
     var a = []; //store our values in empty array
@@ -92,12 +92,12 @@ module.exports.typeOf = typeOf;
 }
 module.exports.first = first;
 /**
- * first: Function takes in an array and a number and returns: an array if array is not an array, if number is not given or not a number return the first element
+ * last: Function takes in an array and a number and returns: an array if array is not an array, if number is not given or not a number return the first element
  * return first value in array,
  * @param {An Array}: Function takes in an array.
  * @param {A number}: Function takes in a number.
  * 
- * @return {An array} Function returns an empty array, last element in array, last value in array
+ * @return {An array}: Function returns an array containing the last number of items in the input array.
  */
 function last(array, num){
     //store our values in empty array
@@ -126,11 +126,11 @@ function last(array, num){
     }
     module.exports.last = last;
     /**
-     * indexof :Function is made to find index of array otherwise return -1 if not found
+     * indexof :Function takes in an array and a value and returns the index of where the value is located in the array.
      * @param {An Array}: Function takes in an array.
      * @param {A Value}: Function takes in a value.
      * 
-     * @return {Index or -1}: Functions returns the index of the first occurence of value if not found in array returns -1
+     * @return {Index or -1}: Function returns the index of where the value is located on the array. If the value is not in the array the function returns -1.
      */
  function indexof(array, value){
         //iterate through array 
@@ -146,11 +146,11 @@ function last(array, num){
     }
     module.exports.indexof = indexof;
 /**
- * filter: Function is made to filter out values based on condtions
+ * filter: A function designed to take an input array and return a new array with only items that pass the function call.
  * @param {An Array}: Function takes in an array
  * @param {Callback Func}: Function takes in a callback function
  * 
- * @return {Array}: Function returns new array with filtered values if true
+ * @return {Array}: Function returns new array with values that pass the function call.
  */
  function filter(array, func){
     //create an empty array
@@ -206,11 +206,11 @@ function contains(array, value){
    }
 module.exports.contains = contains;
 /**
- * map: Function checks if collection is an array or orbject and saves new values of each function call in an array 
+ * map: Function is designed to iterate over each item in an array and return a new array with items based on callback function.
  * @param {Collection}: Function takes in a collection (array or object)
  * @param {Func}: Function takes in a func param to create a callback func
  * 
- * @return {Array}: Function returns the new values in a new array
+ * @return {Array}: Function returns a new array with items based on callback function.
  */
 function map(collection, func){
     //create empty array for holding
@@ -252,12 +252,12 @@ return newArr;
 }
 module.exports.unique = unique;
 /**
- * reduce: Function reduces on each element of the array
+ * reduce: Function is designed to iterate over an array and apply a callback function to accumulate a single value.
  * @param {Array}: Function takes in an array
  * @param {Func}: Function takes in a callback function
  * @param {Seed}: Function takes in a seed value
  * 
- * @return {Array}: Function returns a new array of the result 
+ * @return {Array}: Function returns a number, string, object, or an array of the result.
  */
 function reduce(array, func, seed){
     //create result variable
@@ -283,11 +283,11 @@ function reduce(array, func, seed){
 }
 module.exports.reduce = reduce;
 /**
- * every: Function goes through every value and returns true or false depending on condition
+ * every: Function is designed to take in an array and return true if every element in the array passes the function if not returns false
  * @param {Collection}: Function takes in a collection
  * @param {Func}: Function takes in a call back function
  * 
- * @return {Boolean}: Function returns boolean if values in collection match the conditon
+ * @return {Boolean}: Function returns true or false
  */
  function every(collection, func){
     if(func === undefined ){
@@ -337,11 +337,11 @@ module.exports.reduce = reduce;
      }
      module.exports.every = every;
      /**
- * every: Function goes through some values and returns true or false depending on condition
+ * some: Function is designed to take in an array and return true if an element in the array passes the function if not returns false
  * @param {Collection}: Function takes in a collection
  * @param {Func}: Function takes in a call back function
  * 
- * @return {Boolean}: Function returns boolean if values in collection match the conditon
+ * @return {Boolean}: Function returns true or false.
  */
       function some(collection, func){
         if(func === undefined ){
@@ -406,11 +406,12 @@ module.exports.reduce = reduce;
         }
         module.exports.extend = extend;
         /**
-         * pluck: Function plucks values out of array
+         * pluck: Function is designed to take in an array of objects and a target property. 
+         * Function should return a new array of only the values at the target property.
          * @param {Array}: Function takes in an array.
          * @param {Property}: Function takes in a property
          * 
-         * @return {Array}: Function returns an array with new values
+         * @return {Array}: Function returns a new array of only the values at the target property.
          */
          function pluck(array, property){
             //mapping over pluck
@@ -423,11 +424,11 @@ module.exports.reduce = reduce;
         }
         module.exports.pluck = pluck;
         /**
-         * partition: Function checks if values are truthy or falsy and sends them to a new array
+         * partition: Function is designed to iterate over an array and return a new array with sub arrays that are truthy and falsy.
          * @param {Array}: Function takes in an array
          * @param {Func}: Function takes in a call back function
          * 
-         *@return: Function returns an array of arrays where the function deemed values truthy or falsy
+         *@return: Function returns a new array with sub arrays of truthy and falsy values.
          */
          function partition(array, func){
             var truthy = []; //creating new array
@@ -446,4 +447,4 @@ module.exports.reduce = reduce;
              //return new combined array
              return combined;
          }
-         module.exports.partition = partition;
+         module.exports.partition = partition; 
